@@ -138,6 +138,7 @@ $ fio
 	--parse-only		Parse options only, don't start any IO
 	--output		Write output to file
 	--runtime		Runtime in seconds
+	--ionum			Terminate after completing specified num of IOs
 	--latency-log		Generate per-job latency logs
 	--bandwidth-log		Generate per-job bandwidth logs
 	--minimal		Minimal (terse) output
