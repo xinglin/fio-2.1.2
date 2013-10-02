@@ -125,6 +125,7 @@ struct thread_options {
 	unsigned int fdatasync_blocks;
 	unsigned int barrier_blocks;
 	unsigned long long start_delay;
+	unsigned long long ionum;
 	unsigned long long timeout;
 	unsigned long long ramp_time;
 	unsigned int overwrite;
@@ -337,6 +338,7 @@ struct thread_options_pack {
 	uint32_t fdatasync_blocks;
 	uint32_t barrier_blocks;
 	uint64_t start_delay;
+	uint64_t ionum;
 	uint64_t timeout;
 	uint64_t ramp_time;
 	uint32_t overwrite;

@@ -351,6 +351,17 @@ static inline int runtime_exceeded(struct thread_data *td, struct timeval *t)
 	return 0;
 }
 
+static inline int ionum_exceeded(struct thread_data *td)
+{
+    if (!td->o.ionum)
+	return 0;
+    if (td->ts.total_complete >= td->o.ionum) {
+	return 1;
+    }
+    
+    return 0;
+}
+
 static int break_on_this_error(struct thread_data *td, enum fio_ddir ddir,
 			       int *retptr)
 {
@@ -454,6 +465,11 @@ static void do_verify(struct thread_data *td, uint64_t verify_bytes)
 				td->terminate = 1;
 				break;
 			}
+		}
+
+		if (ionum_exceeded(td)) {
+		    td->terminate = 1;
+		    break;
 		}
 
 		if (flow_threshold_exceeded(td))
@@ -670,6 +686,11 @@ static uint64_t do_io(struct thread_data *td)
 				td->terminate = 1;
 				break;
 			}
+		}
+
+		if (ionum_exceeded(td)) {
+		    td->terminate = 1;
+		    break;
 		}
 
 		if (flow_threshold_exceeded(td))

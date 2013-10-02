@@ -1425,6 +1425,16 @@ struct fio_option fio_options[FIO_MAX_OPTS] = {
 		.group	= FIO_OPT_G_IO_BASIC,
 	},
 	{
+		.name	= "ionum",
+		.lname	= "Total number of IOs",
+		.type	= FIO_OPT_INT,
+		.off1	= td_var_offset(ionum),
+		.help	= "Stop workload when this number of IOs have completed",
+		.interval = 1,
+		.category = FIO_OPT_C_IO,
+		.group	= FIO_OPT_G_RUNTIME,
+	},
+	{
 		.name	= "size",
 		.lname	= "Size",
 		.type	= FIO_OPT_STR_VAL,
