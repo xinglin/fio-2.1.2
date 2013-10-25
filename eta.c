@@ -167,9 +167,13 @@ static int thread_eta(struct thread_data *td)
 
 	if (td->runstate == TD_RUNNING || td->runstate == TD_VERIFYING) {
 		double perc, perc_t;
-
-		bytes_done = ddir_rw_sum(td->io_bytes);
-		perc = (double) bytes_done / (double) bytes_total;
+	
+		if (td->o.ionum) {
+		    perc = (double) td->ts.total_complete/ (double) td->o.ionum;
+		} else {
+		    bytes_done = ddir_rw_sum(td->io_bytes);
+		    perc = (double) bytes_done / (double) bytes_total;
+		}
 		if (perc > 1.0)
 			perc = 1.0;
 
